@@ -13,10 +13,13 @@
         android:theme="@style/Theme.Airvet">
         <activity
             android:name=".ui.UserDetailActivity"
-            android:exported="true" />
+            android:exported="true"
+            android:screenOrientation="portrait" />
         <activity
             android:name=".ui.UsersActivity"
-            android:exported="true">
+
+            android:exported="true"
+            android:screenOrientation="portrait">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

@@ -1,3 +1,5 @@
 <resources>
     <string name="app_name">Airvet</string>
+    <string name="email">Email </string>
+    <string name="cell">Cell No</string>
 </resources>

@@ -8,9 +8,9 @@ import retrofit2.http.Query
 
 interface APIService {
 
-    /* @GET("5")
-     fun getUsers(@Path("path") path: String?): Observable<Users>
- */
+   /* @GET("5")
+    fun getUsers(@Path("path") path: String?): Observable<Users>
+*/
 
     @GET("/api/?")
     fun getUsers(@Query("results=") path: String?): Observable<Users>
