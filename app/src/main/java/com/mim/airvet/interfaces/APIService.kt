@@ -12,7 +12,7 @@ interface APIService {
      fun getUsers(@Path("path") path: String?): Observable<Users>
  */
 
-    @GET("/api/?results=5")
+    @GET("/api/?results=10")
     fun getUsers(): Observable<Users>
 
 }
