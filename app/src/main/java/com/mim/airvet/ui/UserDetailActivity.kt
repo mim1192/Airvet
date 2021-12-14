@@ -57,7 +57,7 @@ class UserDetailActivity : AppCompatActivity() {
         dob?.text = userDetails?.dob?.date
         email!!.text = userDetails?.email
         gender!!.text = userDetails?.gender
-        location!!.text = userDetails?.location?.postcode.toString()
+        location!!.text = userDetails?.location?.city
         name!!.text = userDetails?.name?.first + " " + userDetails?.name?.last
         phone!!.text = userDetails?.phone
         registered!!.text = userDetails?.registered?.date
