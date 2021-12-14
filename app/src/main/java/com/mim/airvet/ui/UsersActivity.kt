@@ -22,6 +22,7 @@ import io.reactivex.schedulers.Schedulers
 import android.content.Intent
 import android.os.Parcelable
 import com.mim.airvet.classes.Result
+import com.mim.airvet.common.Utils
 import com.mim.airvet.interfaces.ClickListener
 import java.util.ArrayList
 
@@ -34,7 +35,10 @@ class UsersActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
         inIt()
-        callUser()
+        if (Utils.isInternetAvailable(this@UsersActivity))
+            callUser()
+        else
+            Utils.showToast(this@UsersActivity, resources.getString(R.string.no_internet_avaliable))
         usersRv?.addOnItemTouchListener(
             UsersActivity.RecyclerTouchListener(
                 applicationContext,
