@@ -14,11 +14,17 @@ import com.mim.airvet.adapter.UserAdapter
 import com.mim.airvet.classes.Users
 import com.mim.airvet.interfaces.API
 import com.mim.airvet.interfaces.APIService
-import com.mim.airvet.interfaces.ClickListener
+
 import io.reactivex.Observable
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.functions.Function
 import io.reactivex.schedulers.Schedulers
+import android.content.Intent
+import android.os.Parcelable
+import com.mim.airvet.classes.Result
+import com.mim.airvet.interfaces.ClickListener
+import java.util.ArrayList
+
 
 class UsersActivity : AppCompatActivity() {
     private var apiService: APIService? = null
@@ -57,11 +63,12 @@ class UsersActivity : AppCompatActivity() {
     private fun callUser() {
 
         apiService = API().getClient()!!.create(APIService::class.java)
-        val observable: Observable<Users> = apiService!!.getUsers("10")
+        val observable: Observable<Users> = apiService!!.getUsers()
+
         observable.subscribeOn(Schedulers.newThread()).observeOn(AndroidSchedulers.mainThread())
             .map(Function<Users, Any> { result: Users -> result })
             .subscribe(
-                { joke: Any -> handleResults(joke as Users) }
+                { item: Any -> handleResults(item as Users) }
             ) { t: Throwable ->
                 handleError(
                     t
@@ -82,6 +89,25 @@ class UsersActivity : AppCompatActivity() {
         usersRv!!.layoutManager = LinearLayoutManager(this@UsersActivity)
 
         usersRv!!.adapter = adapter
+        usersRv!!.addOnItemTouchListener(
+            RecyclerTouchListener(
+                this,
+                usersRv!!,
+                object : ClickListener {
+                    override fun onClick(view: View, position: Int) {
+                        val i = Intent(this@UsersActivity, UserDetailActivity::class.java)
+                        i.putExtra(
+                            "UserDetail",
+                            users.results.get(position)
+                        )
+                        startActivity(i)
+                    }
+
+                    override fun onLongClick(view: View?, position: Int) {
+                        // catPos = position
+                    }
+                })
+        )
     }
 
     private fun handleError(t: Throwable) {

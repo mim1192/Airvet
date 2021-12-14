@@ -26,7 +26,7 @@ class UserAdapter(private val context: Context, list_: MutableList<Result>) :
         holder.gender.setText(thisRow.gender)
         Glide.with(context)
             .load(thisRow.picture.medium)
-            .into(holder.userImage);
+            .into(holder.userImage)
 
 
     }

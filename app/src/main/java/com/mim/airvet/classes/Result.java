@@ -2,11 +2,14 @@
 package com.mim.airvet.classes;
 
 
+import android.os.Parcel;
+import android.os.Parcelable;
+
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
 
-public class Result {
+public class Result implements Parcelable {
 
     @SerializedName("gender")
     @Expose
@@ -44,6 +47,26 @@ public class Result {
     @SerializedName("nat")
     @Expose
     private String nat;
+
+    protected Result(Parcel in) {
+        gender = in.readString();
+        email = in.readString();
+        phone = in.readString();
+        cell = in.readString();
+        nat = in.readString();
+    }
+
+    public static final Creator<Result> CREATOR = new Creator<Result>() {
+        @Override
+        public Result createFromParcel(Parcel in) {
+            return new Result(in);
+        }
+
+        @Override
+        public Result[] newArray(int size) {
+            return new Result[size];
+        }
+    };
 
     public String getGender() {
         return gender;
@@ -141,4 +164,17 @@ public class Result {
         this.nat = nat;
     }
 
+    @Override
+    public int describeContents() {
+        return 0;
+    }
+
+    @Override
+    public void writeToParcel(Parcel dest, int flags) {
+        dest.writeString(gender);
+        dest.writeString(email);
+        dest.writeString(phone);
+        dest.writeString(cell);
+        dest.writeString(nat);
+    }
 }
