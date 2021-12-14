@@ -37,7 +37,6 @@ class UserDetailActivity : AppCompatActivity() {
         cell = findViewById(R.id.cell)
         gender = findViewById(R.id.gender)
         registered = findViewById(R.id.registered)
-        other = findViewById(R.id.other)
         dob = findViewById(R.id.dob)
         email = findViewById(R.id.email)
         location = findViewById(R.id.location)
