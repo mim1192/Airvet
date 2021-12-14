@@ -97,10 +97,12 @@ class UsersActivity : AppCompatActivity() {
                     override fun onClick(view: View, position: Int) {
                         val i = Intent(this@UsersActivity, UserDetailActivity::class.java)
 
+
                         i.putExtra(
                             "UserDetail",
                             users.results.get(position)
                         )
+
                         startActivity(i)
                     }
 

@@ -30,7 +30,8 @@ class UserDetailActivity : AppCompatActivity() {
     }
 
     private fun inIt() {
-        val userDetails = intent.getParcelableExtra<Result>("UserDetail")
+        val userDetails = intent.getParcelableExtra<Result?>("UserDetail")
+
         picture = findViewById(R.id.picture)
         name = findViewById(R.id.name)
         cell = findViewById(R.id.cell)
@@ -54,10 +55,10 @@ class UserDetailActivity : AppCompatActivity() {
             .load(userDetails?.picture?.medium)
             .into(picture!!)
         cell?.text = userDetails?.cell.also { cell!!.text = it }
-        dob?.text = userDetails?.dob?.age?.let { dob!!.setText(it) }.toString()
+        dob?.text = userDetails?.dob?.date
         email!!.text = userDetails?.email
         gender!!.text = userDetails?.gender
-        location!!.text = userDetails?.location?.let { location!!.setText(it.postcode) }.toString()
+        location!!.text = userDetails?.location?.postcode.toString()
         name!!.text = userDetails?.name?.first + " " + userDetails?.name?.last
         phone!!.text = userDetails?.phone
         registered!!.text = userDetails?.registered?.date

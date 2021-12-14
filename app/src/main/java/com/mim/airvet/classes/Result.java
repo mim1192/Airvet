@@ -50,9 +50,16 @@ public class Result implements Parcelable {
 
     protected Result(Parcel in) {
         gender = in.readString();
+        name = in.readParcelable(Name.class.getClassLoader());
+        location = in.readParcelable(Location.class.getClassLoader());
         email = in.readString();
+        login = in.readParcelable(Login.class.getClassLoader());
+        dob = in.readParcelable(Dob.class.getClassLoader());
+        registered = in.readParcelable(Registered.class.getClassLoader());
         phone = in.readString();
         cell = in.readString();
+        id = in.readParcelable(Id.class.getClassLoader());
+        picture = in.readParcelable(Picture.class.getClassLoader());
         nat = in.readString();
     }
 
@@ -172,9 +179,16 @@ public class Result implements Parcelable {
     @Override
     public void writeToParcel(Parcel dest, int flags) {
         dest.writeString(gender);
+        dest.writeParcelable(name, flags);
+        dest.writeParcelable(location, flags);
         dest.writeString(email);
+        dest.writeParcelable(login, flags);
+        dest.writeParcelable(dob, flags);
+        dest.writeParcelable(registered, flags);
         dest.writeString(phone);
         dest.writeString(cell);
+        dest.writeParcelable(id, flags);
+        dest.writeParcelable(picture, flags);
         dest.writeString(nat);
     }
 }
