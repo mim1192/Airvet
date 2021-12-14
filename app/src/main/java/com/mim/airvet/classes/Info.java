@@ -2,11 +2,14 @@
 package com.mim.airvet.classes;
 
 
+import android.os.Parcel;
+import android.os.Parcelable;
+
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
 
-public class Info {
+public class Info implements Parcelable {
 
     @SerializedName("seed")
     @Expose
@@ -20,6 +23,33 @@ public class Info {
     @SerializedName("version")
     @Expose
     private String version;
+
+    protected Info(Parcel in) {
+        seed = in.readString();
+        if (in.readByte() == 0) {
+            results = null;
+        } else {
+            results = in.readInt();
+        }
+        if (in.readByte() == 0) {
+            page = null;
+        } else {
+            page = in.readInt();
+        }
+        version = in.readString();
+    }
+
+    public static final Creator<Info> CREATOR = new Creator<Info>() {
+        @Override
+        public Info createFromParcel(Parcel in) {
+            return new Info(in);
+        }
+
+        @Override
+        public Info[] newArray(int size) {
+            return new Info[size];
+        }
+    };
 
     public String getSeed() {
         return seed;
@@ -53,4 +83,26 @@ public class Info {
         this.version = version;
     }
 
+    @Override
+    public int describeContents() {
+        return 0;
+    }
+
+    @Override
+    public void writeToParcel(Parcel dest, int flags) {
+        dest.writeString(seed);
+        if (results == null) {
+            dest.writeByte((byte) 0);
+        } else {
+            dest.writeByte((byte) 1);
+            dest.writeInt(results);
+        }
+        if (page == null) {
+            dest.writeByte((byte) 0);
+        } else {
+            dest.writeByte((byte) 1);
+            dest.writeInt(page);
+        }
+        dest.writeString(version);
+    }
 }

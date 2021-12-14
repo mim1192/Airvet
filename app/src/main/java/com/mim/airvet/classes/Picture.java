@@ -2,11 +2,14 @@
 package com.mim.airvet.classes;
 
 
+import android.os.Parcel;
+import android.os.Parcelable;
+
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
 
-public class Picture {
+public class Picture implements Parcelable {
 
     @SerializedName("large")
     @Expose
@@ -17,6 +20,24 @@ public class Picture {
     @SerializedName("thumbnail")
     @Expose
     private String thumbnail;
+
+    protected Picture(Parcel in) {
+        large = in.readString();
+        medium = in.readString();
+        thumbnail = in.readString();
+    }
+
+    public static final Creator<Picture> CREATOR = new Creator<Picture>() {
+        @Override
+        public Picture createFromParcel(Parcel in) {
+            return new Picture(in);
+        }
+
+        @Override
+        public Picture[] newArray(int size) {
+            return new Picture[size];
+        }
+    };
 
     public String getLarge() {
         return large;
@@ -42,4 +63,15 @@ public class Picture {
         this.thumbnail = thumbnail;
     }
 
+    @Override
+    public int describeContents() {
+        return 0;
+    }
+
+    @Override
+    public void writeToParcel(Parcel dest, int flags) {
+        dest.writeString(large);
+        dest.writeString(medium);
+        dest.writeString(thumbnail);
+    }
 }

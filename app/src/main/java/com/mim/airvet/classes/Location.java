@@ -2,11 +2,14 @@
 package com.mim.airvet.classes;
 
 
+import android.os.Parcel;
+import android.os.Parcelable;
+
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
 
-public class Location {
+public class Location implements Parcelable {
 
     @SerializedName("street")
     @Expose
@@ -29,6 +32,32 @@ public class Location {
     @SerializedName("timezone")
     @Expose
     private Timezone timezone;
+
+    protected Location(Parcel in) {
+        street = in.readParcelable(Street.class.getClassLoader());
+        city = in.readString();
+        state = in.readString();
+        country = in.readString();
+        if (in.readByte() == 0) {
+            postcode = null;
+        } else {
+            postcode = in.readInt();
+        }
+        coordinates = in.readParcelable(Coordinates.class.getClassLoader());
+        timezone = in.readParcelable(Timezone.class.getClassLoader());
+    }
+
+    public static final Creator<Location> CREATOR = new Creator<Location>() {
+        @Override
+        public Location createFromParcel(Parcel in) {
+            return new Location(in);
+        }
+
+        @Override
+        public Location[] newArray(int size) {
+            return new Location[size];
+        }
+    };
 
     public Street getStreet() {
         return street;
@@ -86,4 +115,24 @@ public class Location {
         this.timezone = timezone;
     }
 
+    @Override
+    public int describeContents() {
+        return 0;
+    }
+
+    @Override
+    public void writeToParcel(Parcel dest, int flags) {
+        dest.writeParcelable(street, flags);
+        dest.writeString(city);
+        dest.writeString(state);
+        dest.writeString(country);
+        if (postcode == null) {
+            dest.writeByte((byte) 0);
+        } else {
+            dest.writeByte((byte) 1);
+            dest.writeInt(postcode);
+        }
+        dest.writeParcelable(coordinates, flags);
+        dest.writeParcelable(timezone, flags);
+    }
 }
