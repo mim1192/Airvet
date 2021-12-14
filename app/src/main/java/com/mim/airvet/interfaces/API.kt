@@ -16,12 +16,11 @@ class API {
         interceptor.level = HttpLoggingInterceptor.Level.BODY
         //OkHttpClient client = new OkHttpClient.Builder().addInterceptor(interceptor).build();
 
-//http://api.vvs.com.pk/api/Authenticate/Authenticate
-//https://api.vvs.com.pk/api/Search/GetSearchData
+
         val client = OkHttpClient.Builder().addInterceptor(interceptor)
-            .connectTimeout(1, TimeUnit.MINUTES)
-            .readTimeout(30, TimeUnit.SECONDS)
-            .writeTimeout(15, TimeUnit.SECONDS)
+            .connectTimeout(2, TimeUnit.MINUTES)
+            .readTimeout(40, TimeUnit.SECONDS)
+            .writeTimeout(25, TimeUnit.SECONDS)
             .build()
         retrofit = Retrofit.Builder()
             .baseUrl("https://randomuser.me")
