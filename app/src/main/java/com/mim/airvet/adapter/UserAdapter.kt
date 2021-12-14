@@ -21,9 +21,9 @@ class UserAdapter(private val context: Context, list_: MutableList<Result>) :
 
     override fun onBindViewHolder(holder: UserViewHolder, position: Int) {
         val thisRow: Result = list!![position]
-        holder.email.setText(thisRow.email)
-        holder.cell.setText(thisRow.cell)
-        holder.gender.setText(thisRow.gender)
+        holder.email.setText(thisRow.email.toString())
+        holder.cell.setText(thisRow.cell.toString())
+        holder.gender.setText(thisRow.gender.toString())
         Glide.with(context)
             .load(thisRow.picture.medium)
             .into(holder.userImage)

@@ -14,13 +14,13 @@ public class Name implements Parcelable
 
     @SerializedName("title")
     @Expose
-    private String title;
+    private Object title;
     @SerializedName("first")
     @Expose
-    private String first;
+    private Object first;
     @SerializedName("last")
     @Expose
-    private String last;
+    private Object last;
     public final static Creator<Name> CREATOR = new Creator<Name>() {
 
 
@@ -39,35 +39,35 @@ public class Name implements Parcelable
     ;
 
     protected Name(android.os.Parcel in) {
-        this.title = ((String) in.readValue((String.class.getClassLoader())));
-        this.first = ((String) in.readValue((String.class.getClassLoader())));
-        this.last = ((String) in.readValue((String.class.getClassLoader())));
+        this.title = ((Object) in.readValue((Object.class.getClassLoader())));
+        this.first = ((Object) in.readValue((Object.class.getClassLoader())));
+        this.last = ((Object) in.readValue((Object.class.getClassLoader())));
     }
 
     public Name() {
     }
 
-    public String getTitle() {
+    public Object getTitle() {
         return title;
     }
 
-    public void setTitle(String title) {
+    public void setTitle(Object title) {
         this.title = title;
     }
 
-    public String getFirst() {
+    public Object getFirst() {
         return first;
     }
 
-    public void setFirst(String first) {
+    public void setFirst(Object first) {
         this.first = first;
     }
 
-    public String getLast() {
+    public Object getLast() {
         return last;
     }
 
-    public void setLast(String last) {
+    public void setLast(Object last) {
         this.last = last;
     }
 

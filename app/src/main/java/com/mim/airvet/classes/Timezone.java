@@ -14,10 +14,10 @@ public class Timezone implements Parcelable
 
     @SerializedName("offset")
     @Expose
-    private String offset;
+    private Object offset;
     @SerializedName("description")
     @Expose
-    private String description;
+    private Object description;
     public final static Creator<Timezone> CREATOR = new Creator<Timezone>() {
 
 
@@ -36,26 +36,26 @@ public class Timezone implements Parcelable
     ;
 
     protected Timezone(android.os.Parcel in) {
-        this.offset = ((String) in.readValue((String.class.getClassLoader())));
-        this.description = ((String) in.readValue((String.class.getClassLoader())));
+        this.offset = ((Object) in.readValue((Object.class.getClassLoader())));
+        this.description = ((Object) in.readValue((Object.class.getClassLoader())));
     }
 
     public Timezone() {
     }
 
-    public String getOffset() {
+    public Object getOffset() {
         return offset;
     }
 
-    public void setOffset(String offset) {
+    public void setOffset(Object offset) {
         this.offset = offset;
     }
 
-    public String getDescription() {
+    public Object getDescription() {
         return description;
     }
 
-    public void setDescription(String description) {
+    public void setDescription(Object description) {
         this.description = description;
     }
 

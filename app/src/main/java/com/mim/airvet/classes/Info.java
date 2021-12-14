@@ -14,16 +14,16 @@ public class Info implements Parcelable
 
     @SerializedName("seed")
     @Expose
-    private String seed;
+    private Object seed;
     @SerializedName("results")
     @Expose
-    private Integer results;
+    private Object results;
     @SerializedName("page")
     @Expose
-    private Integer page;
+    private Object page;
     @SerializedName("version")
     @Expose
-    private String version;
+    private Object version;
     public final static Creator<Info> CREATOR = new Creator<Info>() {
 
 
@@ -42,44 +42,44 @@ public class Info implements Parcelable
     ;
 
     protected Info(android.os.Parcel in) {
-        this.seed = ((String) in.readValue((String.class.getClassLoader())));
-        this.results = ((Integer) in.readValue((Integer.class.getClassLoader())));
-        this.page = ((Integer) in.readValue((Integer.class.getClassLoader())));
-        this.version = ((String) in.readValue((String.class.getClassLoader())));
+        this.seed = ((Object) in.readValue((Object.class.getClassLoader())));
+        this.results = ((Object) in.readValue((Object.class.getClassLoader())));
+        this.page = ((Object) in.readValue((Object.class.getClassLoader())));
+        this.version = ((Object) in.readValue((Object.class.getClassLoader())));
     }
 
     public Info() {
     }
 
-    public String getSeed() {
+    public Object getSeed() {
         return seed;
     }
 
-    public void setSeed(String seed) {
+    public void setSeed(Object seed) {
         this.seed = seed;
     }
 
-    public Integer getResults() {
+    public Object getResults() {
         return results;
     }
 
-    public void setResults(Integer results) {
+    public void setResults(Object results) {
         this.results = results;
     }
 
-    public Integer getPage() {
+    public Object getPage() {
         return page;
     }
 
-    public void setPage(Integer page) {
+    public void setPage(Object page) {
         this.page = page;
     }
 
-    public String getVersion() {
+    public Object getVersion() {
         return version;
     }
 
-    public void setVersion(String version) {
+    public void setVersion(Object version) {
         this.version = version;
     }
 

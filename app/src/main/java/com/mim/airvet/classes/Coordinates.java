@@ -14,10 +14,10 @@ public class Coordinates implements Parcelable
 
     @SerializedName("latitude")
     @Expose
-    private String latitude;
+    private Object latitude;
     @SerializedName("longitude")
     @Expose
-    private String longitude;
+    private Object longitude;
     public final static Creator<Coordinates> CREATOR = new Creator<Coordinates>() {
 
 
@@ -36,26 +36,26 @@ public class Coordinates implements Parcelable
     ;
 
     protected Coordinates(android.os.Parcel in) {
-        this.latitude = ((String) in.readValue((String.class.getClassLoader())));
-        this.longitude = ((String) in.readValue((String.class.getClassLoader())));
+        this.latitude = ((Object) in.readValue((Object.class.getClassLoader())));
+        this.longitude = ((Object) in.readValue((Object.class.getClassLoader())));
     }
 
     public Coordinates() {
     }
 
-    public String getLatitude() {
+    public Object getLatitude() {
         return latitude;
     }
 
-    public void setLatitude(String latitude) {
+    public void setLatitude(Object latitude) {
         this.latitude = latitude;
     }
 
-    public String getLongitude() {
+    public Object getLongitude() {
         return longitude;
     }
 
-    public void setLongitude(String longitude) {
+    public void setLongitude(Object longitude) {
         this.longitude = longitude;
     }
 

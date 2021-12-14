@@ -14,13 +14,13 @@ public class Picture implements Parcelable
 
     @SerializedName("large")
     @Expose
-    private String large;
+    private Object large;
     @SerializedName("medium")
     @Expose
-    private String medium;
+    private Object medium;
     @SerializedName("thumbnail")
     @Expose
-    private String thumbnail;
+    private Object thumbnail;
     public final static Creator<Picture> CREATOR = new Creator<Picture>() {
 
 
@@ -39,35 +39,35 @@ public class Picture implements Parcelable
     ;
 
     protected Picture(android.os.Parcel in) {
-        this.large = ((String) in.readValue((String.class.getClassLoader())));
-        this.medium = ((String) in.readValue((String.class.getClassLoader())));
-        this.thumbnail = ((String) in.readValue((String.class.getClassLoader())));
+        this.large = ((Object) in.readValue((Object.class.getClassLoader())));
+        this.medium = ((Object) in.readValue((Object.class.getClassLoader())));
+        this.thumbnail = ((Object) in.readValue((Object.class.getClassLoader())));
     }
 
     public Picture() {
     }
 
-    public String getLarge() {
+    public Object getLarge() {
         return large;
     }
 
-    public void setLarge(String large) {
+    public void setLarge(Object large) {
         this.large = large;
     }
 
-    public String getMedium() {
+    public Object getMedium() {
         return medium;
     }
 
-    public void setMedium(String medium) {
+    public void setMedium(Object medium) {
         this.medium = medium;
     }
 
-    public String getThumbnail() {
+    public Object getThumbnail() {
         return thumbnail;
     }
 
-    public void setThumbnail(String thumbnail) {
+    public void setThumbnail(Object thumbnail) {
         this.thumbnail = thumbnail;
     }
 

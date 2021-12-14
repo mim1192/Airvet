@@ -14,10 +14,10 @@ public class Dob implements Parcelable
 
     @SerializedName("date")
     @Expose
-    private String date;
+    private Object date;
     @SerializedName("age")
     @Expose
-    private Integer age;
+    private Object age;
     public final static Creator<Dob> CREATOR = new Creator<Dob>() {
 
 
@@ -36,26 +36,26 @@ public class Dob implements Parcelable
     ;
 
     protected Dob(android.os.Parcel in) {
-        this.date = ((String) in.readValue((String.class.getClassLoader())));
-        this.age = ((Integer) in.readValue((Integer.class.getClassLoader())));
+        this.date = ((Object) in.readValue((Object.class.getClassLoader())));
+        this.age = ((Object) in.readValue((Object.class.getClassLoader())));
     }
 
     public Dob() {
     }
 
-    public String getDate() {
+    public Object getDate() {
         return date;
     }
 
-    public void setDate(String date) {
+    public void setDate(Object date) {
         this.date = date;
     }
 
-    public Integer getAge() {
+    public Object getAge() {
         return age;
     }
 
-    public void setAge(Integer age) {
+    public void setAge(Object age) {
         this.age = age;
     }
 

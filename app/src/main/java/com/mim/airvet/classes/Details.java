@@ -37,7 +37,7 @@ public class Details implements Parcelable
     ;
 
     protected Details(android.os.Parcel in) {
-        in.readList(this.results, (com.mim.tutorprojecttest.classes.Result.class.getClassLoader()));
+        in.readList(this.results, (Result.class.getClassLoader()));
         this.info = ((Info) in.readValue((Info.class.getClassLoader())));
     }
 

@@ -17,16 +17,16 @@ public class Location implements Parcelable
     private Street street;
     @SerializedName("city")
     @Expose
-    private String city;
+    private Object city;
     @SerializedName("state")
     @Expose
-    private String state;
+    private Object state;
     @SerializedName("country")
     @Expose
-    private String country;
+    private Object country;
     @SerializedName("postcode")
     @Expose
-    private Integer postcode;
+    private Object postcode;
     @SerializedName("coordinates")
     @Expose
     private Coordinates coordinates;
@@ -52,10 +52,10 @@ public class Location implements Parcelable
 
     protected Location(android.os.Parcel in) {
         this.street = ((Street) in.readValue((Street.class.getClassLoader())));
-        this.city = ((String) in.readValue((String.class.getClassLoader())));
-        this.state = ((String) in.readValue((String.class.getClassLoader())));
-        this.country = ((String) in.readValue((String.class.getClassLoader())));
-        this.postcode = ((Integer) in.readValue((Integer.class.getClassLoader())));
+        this.city = ((Object) in.readValue((Object.class.getClassLoader())));
+        this.state = ((Object) in.readValue((Object.class.getClassLoader())));
+        this.country = ((Object) in.readValue((Object.class.getClassLoader())));
+        this.postcode = ((Object) in.readValue((Object.class.getClassLoader())));
         this.coordinates = ((Coordinates) in.readValue((Coordinates.class.getClassLoader())));
         this.timezone = ((Timezone) in.readValue((Timezone.class.getClassLoader())));
     }
@@ -71,35 +71,35 @@ public class Location implements Parcelable
         this.street = street;
     }
 
-    public String getCity() {
+    public Object getCity() {
         return city;
     }
 
-    public void setCity(String city) {
+    public void setCity(Object city) {
         this.city = city;
     }
 
-    public String getState() {
+    public Object getState() {
         return state;
     }
 
-    public void setState(String state) {
+    public void setState(Object state) {
         this.state = state;
     }
 
-    public String getCountry() {
+    public Object getCountry() {
         return country;
     }
 
-    public void setCountry(String country) {
+    public void setCountry(Object country) {
         this.country = country;
     }
 
-    public Integer getPostcode() {
+    public Object getPostcode() {
         return postcode;
     }
 
-    public void setPostcode(Integer postcode) {
+    public void setPostcode(Object postcode) {
         this.postcode = postcode;
     }
 

@@ -14,10 +14,10 @@ public class Street implements Parcelable
 
     @SerializedName("number")
     @Expose
-    private Integer number;
+    private Object number;
     @SerializedName("name")
     @Expose
-    private String name;
+    private Object name;
     public final static Creator<Street> CREATOR = new Creator<Street>() {
 
 
@@ -36,26 +36,26 @@ public class Street implements Parcelable
     ;
 
     protected Street(android.os.Parcel in) {
-        this.number = ((Integer) in.readValue((Integer.class.getClassLoader())));
-        this.name = ((String) in.readValue((String.class.getClassLoader())));
+        this.number = ((Object) in.readValue((Object.class.getClassLoader())));
+        this.name = ((Object) in.readValue((Object.class.getClassLoader())));
     }
 
     public Street() {
     }
 
-    public Integer getNumber() {
+    public Object getNumber() {
         return number;
     }
 
-    public void setNumber(Integer number) {
+    public void setNumber(Object number) {
         this.number = number;
     }
 
-    public String getName() {
+    public Object getName() {
         return name;
     }
 
-    public void setName(String name) {
+    public void setName(Object name) {
         this.name = name;
     }
 

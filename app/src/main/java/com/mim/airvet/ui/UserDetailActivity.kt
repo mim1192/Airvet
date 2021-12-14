@@ -53,13 +53,13 @@ class UserDetailActivity : AppCompatActivity() {
         Glide.with(this@UserDetailActivity)
             .load(userDetails?.picture?.medium)
             .into(picture!!)
-        cell?.text = userDetails?.cell.also { cell!!.text = it }
-        dob?.text = userDetails?.dob?.date
-        email!!.text = userDetails?.email
-        gender!!.text = userDetails?.gender
-        location!!.text = userDetails?.location?.city
-        name!!.text = userDetails?.name?.first + " " + userDetails?.name?.last
-        phone!!.text = userDetails?.phone
-        registered!!.text = userDetails?.registered?.date
+        cell?.text = userDetails?.cell.also { cell!!.text = it.toString() }.toString()
+        dob?.text = userDetails?.dob?.date.toString()
+        email!!.text = userDetails?.email.toString()
+        gender!!.text = userDetails?.gender.toString()
+        location!!.text = userDetails?.location?.city.toString()
+        name!!.text = userDetails?.name?.first.toString() + " " + userDetails?.name?.last.toString()
+        phone!!.text = userDetails?.phone.toString()
+        registered!!.text = userDetails?.registered?.date.toString()
     }
 }

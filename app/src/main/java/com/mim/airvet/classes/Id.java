@@ -14,10 +14,10 @@ public class Id implements Parcelable
 
     @SerializedName("name")
     @Expose
-    private String name;
+    private Object name;
     @SerializedName("value")
     @Expose
-    private String value;
+    private Object value;
     public final static Creator<Id> CREATOR = new Creator<Id>() {
 
 
@@ -36,26 +36,26 @@ public class Id implements Parcelable
     ;
 
     protected Id(android.os.Parcel in) {
-        this.name = ((String) in.readValue((String.class.getClassLoader())));
-        this.value = ((String) in.readValue((String.class.getClassLoader())));
+        this.name = ((Object) in.readValue((Object.class.getClassLoader())));
+        this.value = ((Object) in.readValue((Object.class.getClassLoader())));
     }
 
     public Id() {
     }
 
-    public String getName() {
+    public Object getName() {
         return name;
     }
 
-    public void setName(String name) {
+    public void setName(Object name) {
         this.name = name;
     }
 
-    public String getValue() {
+    public Object getValue() {
         return value;
     }
 
-    public void setValue(String value) {
+    public void setValue(Object value) {
         this.value = value;
     }
 

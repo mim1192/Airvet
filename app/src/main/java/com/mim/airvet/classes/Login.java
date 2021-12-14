@@ -14,25 +14,25 @@ public class Login implements Parcelable
 
     @SerializedName("uuid")
     @Expose
-    private String uuid;
+    private Object uuid;
     @SerializedName("username")
     @Expose
-    private String username;
+    private Object username;
     @SerializedName("password")
     @Expose
-    private String password;
+    private Object password;
     @SerializedName("salt")
     @Expose
-    private String salt;
+    private Object salt;
     @SerializedName("md5")
     @Expose
-    private String md5;
+    private Object md5;
     @SerializedName("sha1")
     @Expose
-    private String sha1;
+    private Object sha1;
     @SerializedName("sha256")
     @Expose
-    private String sha256;
+    private Object sha256;
     public final static Creator<Login> CREATOR = new Creator<Login>() {
 
 
@@ -51,71 +51,71 @@ public class Login implements Parcelable
     ;
 
     protected Login(android.os.Parcel in) {
-        this.uuid = ((String) in.readValue((String.class.getClassLoader())));
-        this.username = ((String) in.readValue((String.class.getClassLoader())));
-        this.password = ((String) in.readValue((String.class.getClassLoader())));
-        this.salt = ((String) in.readValue((String.class.getClassLoader())));
-        this.md5 = ((String) in.readValue((String.class.getClassLoader())));
-        this.sha1 = ((String) in.readValue((String.class.getClassLoader())));
-        this.sha256 = ((String) in.readValue((String.class.getClassLoader())));
+        this.uuid = ((Object) in.readValue((Object.class.getClassLoader())));
+        this.username = ((Object) in.readValue((Object.class.getClassLoader())));
+        this.password = ((Object) in.readValue((Object.class.getClassLoader())));
+        this.salt = ((Object) in.readValue((Object.class.getClassLoader())));
+        this.md5 = ((Object) in.readValue((Object.class.getClassLoader())));
+        this.sha1 = ((Object) in.readValue((Object.class.getClassLoader())));
+        this.sha256 = ((Object) in.readValue((Object.class.getClassLoader())));
     }
 
     public Login() {
     }
 
-    public String getUuid() {
+    public Object getUuid() {
         return uuid;
     }
 
-    public void setUuid(String uuid) {
+    public void setUuid(Object uuid) {
         this.uuid = uuid;
     }
 
-    public String getUsername() {
+    public Object getUsername() {
         return username;
     }
 
-    public void setUsername(String username) {
+    public void setUsername(Object username) {
         this.username = username;
     }
 
-    public String getPassword() {
+    public Object getPassword() {
         return password;
     }
 
-    public void setPassword(String password) {
+    public void setPassword(Object password) {
         this.password = password;
     }
 
-    public String getSalt() {
+    public Object getSalt() {
         return salt;
     }
 
-    public void setSalt(String salt) {
+    public void setSalt(Object salt) {
         this.salt = salt;
     }
 
-    public String getMd5() {
+    public Object getMd5() {
         return md5;
     }
 
-    public void setMd5(String md5) {
+    public void setMd5(Object md5) {
         this.md5 = md5;
     }
 
-    public String getSha1() {
+    public Object getSha1() {
         return sha1;
     }
 
-    public void setSha1(String sha1) {
+    public void setSha1(Object sha1) {
         this.sha1 = sha1;
     }
 
-    public String getSha256() {
+    public Object getSha256() {
         return sha256;
     }
 
-    public void setSha256(String sha256) {
+    public void setSha256(Object sha256) {
         this.sha256 = sha256;
     }
 

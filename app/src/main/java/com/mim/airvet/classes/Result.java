@@ -14,7 +14,7 @@ public class Result implements Parcelable
 
     @SerializedName("gender")
     @Expose
-    private String gender;
+    private Object gender;
     @SerializedName("name")
     @Expose
     private Name name;
@@ -23,7 +23,7 @@ public class Result implements Parcelable
     private Location location;
     @SerializedName("email")
     @Expose
-    private String email;
+    private Object email;
     @SerializedName("login")
     @Expose
     private Login login;
@@ -35,10 +35,10 @@ public class Result implements Parcelable
     private Registered registered;
     @SerializedName("phone")
     @Expose
-    private String phone;
+    private Object phone;
     @SerializedName("cell")
     @Expose
-    private String cell;
+    private Object cell;
     @SerializedName("id")
     @Expose
     private Id id;
@@ -47,7 +47,7 @@ public class Result implements Parcelable
     private Picture picture;
     @SerializedName("nat")
     @Expose
-    private String nat;
+    private Object nat;
     public final static Creator<Result> CREATOR = new Creator<Result>() {
 
 
@@ -66,28 +66,28 @@ public class Result implements Parcelable
     ;
 
     protected Result(android.os.Parcel in) {
-        this.gender = ((String) in.readValue((String.class.getClassLoader())));
+        this.gender = ((Object) in.readValue((Object.class.getClassLoader())));
         this.name = ((Name) in.readValue((Name.class.getClassLoader())));
         this.location = ((Location) in.readValue((Location.class.getClassLoader())));
-        this.email = ((String) in.readValue((String.class.getClassLoader())));
+        this.email = ((Object) in.readValue((Object.class.getClassLoader())));
         this.login = ((Login) in.readValue((Login.class.getClassLoader())));
         this.dob = ((Dob) in.readValue((Dob.class.getClassLoader())));
         this.registered = ((Registered) in.readValue((Registered.class.getClassLoader())));
-        this.phone = ((String) in.readValue((String.class.getClassLoader())));
-        this.cell = ((String) in.readValue((String.class.getClassLoader())));
+        this.phone = ((Object) in.readValue((Object.class.getClassLoader())));
+        this.cell = ((Object) in.readValue((Object.class.getClassLoader())));
         this.id = ((Id) in.readValue((Id.class.getClassLoader())));
         this.picture = ((Picture) in.readValue((Picture.class.getClassLoader())));
-        this.nat = ((String) in.readValue((String.class.getClassLoader())));
+        this.nat = ((Object) in.readValue((Object.class.getClassLoader())));
     }
 
     public Result() {
     }
 
-    public String getGender() {
+    public Object getGender() {
         return gender;
     }
 
-    public void setGender(String gender) {
+    public void setGender(Object gender) {
         this.gender = gender;
     }
 
@@ -107,11 +107,11 @@ public class Result implements Parcelable
         this.location = location;
     }
 
-    public String getEmail() {
+    public Object getEmail() {
         return email;
     }
 
-    public void setEmail(String email) {
+    public void setEmail(Object email) {
         this.email = email;
     }
 
@@ -139,19 +139,19 @@ public class Result implements Parcelable
         this.registered = registered;
     }
 
-    public String getPhone() {
+    public Object getPhone() {
         return phone;
     }
 
-    public void setPhone(String phone) {
+    public void setPhone(Object phone) {
         this.phone = phone;
     }
 
-    public String getCell() {
+    public Object getCell() {
         return cell;
     }
 
-    public void setCell(String cell) {
+    public void setCell(Object cell) {
         this.cell = cell;
     }
 
@@ -171,11 +171,11 @@ public class Result implements Parcelable
         this.picture = picture;
     }
 
-    public String getNat() {
+    public Object getNat() {
         return nat;
     }
 
-    public void setNat(String nat) {
+    public void setNat(Object nat) {
         this.nat = nat;
     }
 
