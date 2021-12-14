@@ -2,14 +2,15 @@
 package com.mim.airvet.classes;
 
 
-import android.os.Parcel;
 import android.os.Parcelable;
-
+import android.os.Parcelable.Creator;
+import android.os.Parcelable.Creator;
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
 
-public class Timezone implements Parcelable {
+public class Timezone implements Parcelable
+{
 
     @SerializedName("offset")
     @Expose
@@ -17,23 +18,30 @@ public class Timezone implements Parcelable {
     @SerializedName("description")
     @Expose
     private String description;
+    public final static Creator<Timezone> CREATOR = new Creator<Timezone>() {
 
-    protected Timezone(Parcel in) {
-        offset = in.readString();
-        description = in.readString();
-    }
 
-    public static final Creator<Timezone> CREATOR = new Creator<Timezone>() {
-        @Override
-        public Timezone createFromParcel(Parcel in) {
+        @SuppressWarnings({
+            "unchecked"
+        })
+        public Timezone createFromParcel(android.os.Parcel in) {
             return new Timezone(in);
         }
 
-        @Override
         public Timezone[] newArray(int size) {
-            return new Timezone[size];
+            return (new Timezone[size]);
         }
-    };
+
+    }
+    ;
+
+    protected Timezone(android.os.Parcel in) {
+        this.offset = ((String) in.readValue((String.class.getClassLoader())));
+        this.description = ((String) in.readValue((String.class.getClassLoader())));
+    }
+
+    public Timezone() {
+    }
 
     public String getOffset() {
         return offset;
@@ -51,14 +59,13 @@ public class Timezone implements Parcelable {
         this.description = description;
     }
 
-    @Override
-    public int describeContents() {
-        return 0;
+    public void writeToParcel(android.os.Parcel dest, int flags) {
+        dest.writeValue(offset);
+        dest.writeValue(description);
     }
 
-    @Override
-    public void writeToParcel(Parcel dest, int flags) {
-        dest.writeString(offset);
-        dest.writeString(description);
+    public int describeContents() {
+        return  0;
     }
+
 }

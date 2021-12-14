@@ -2,14 +2,15 @@
 package com.mim.airvet.classes;
 
 
-import android.os.Parcel;
 import android.os.Parcelable;
-
+import android.os.Parcelable.Creator;
+import android.os.Parcelable.Creator;
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
 
-public class Info implements Parcelable {
+public class Info implements Parcelable
+{
 
     @SerializedName("seed")
     @Expose
@@ -23,33 +24,32 @@ public class Info implements Parcelable {
     @SerializedName("version")
     @Expose
     private String version;
+    public final static Creator<Info> CREATOR = new Creator<Info>() {
 
-    protected Info(Parcel in) {
-        seed = in.readString();
-        if (in.readByte() == 0) {
-            results = null;
-        } else {
-            results = in.readInt();
-        }
-        if (in.readByte() == 0) {
-            page = null;
-        } else {
-            page = in.readInt();
-        }
-        version = in.readString();
-    }
 
-    public static final Creator<Info> CREATOR = new Creator<Info>() {
-        @Override
-        public Info createFromParcel(Parcel in) {
+        @SuppressWarnings({
+            "unchecked"
+        })
+        public Info createFromParcel(android.os.Parcel in) {
             return new Info(in);
         }
 
-        @Override
         public Info[] newArray(int size) {
-            return new Info[size];
+            return (new Info[size]);
         }
-    };
+
+    }
+    ;
+
+    protected Info(android.os.Parcel in) {
+        this.seed = ((String) in.readValue((String.class.getClassLoader())));
+        this.results = ((Integer) in.readValue((Integer.class.getClassLoader())));
+        this.page = ((Integer) in.readValue((Integer.class.getClassLoader())));
+        this.version = ((String) in.readValue((String.class.getClassLoader())));
+    }
+
+    public Info() {
+    }
 
     public String getSeed() {
         return seed;
@@ -83,26 +83,15 @@ public class Info implements Parcelable {
         this.version = version;
     }
 
-    @Override
-    public int describeContents() {
-        return 0;
+    public void writeToParcel(android.os.Parcel dest, int flags) {
+        dest.writeValue(seed);
+        dest.writeValue(results);
+        dest.writeValue(page);
+        dest.writeValue(version);
     }
 
-    @Override
-    public void writeToParcel(Parcel dest, int flags) {
-        dest.writeString(seed);
-        if (results == null) {
-            dest.writeByte((byte) 0);
-        } else {
-            dest.writeByte((byte) 1);
-            dest.writeInt(results);
-        }
-        if (page == null) {
-            dest.writeByte((byte) 0);
-        } else {
-            dest.writeByte((byte) 1);
-            dest.writeInt(page);
-        }
-        dest.writeString(version);
+    public int describeContents() {
+        return  0;
     }
+
 }

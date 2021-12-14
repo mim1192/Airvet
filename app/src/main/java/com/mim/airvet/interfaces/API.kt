@@ -14,13 +14,11 @@ class API {
     fun getClient(): Retrofit? {
         val interceptor = HttpLoggingInterceptor()
         interceptor.level = HttpLoggingInterceptor.Level.BODY
-        //OkHttpClient client = new OkHttpClient.Builder().addInterceptor(interceptor).build();
-
 
         val client = OkHttpClient.Builder().addInterceptor(interceptor)
-            .connectTimeout(2, TimeUnit.MINUTES)
-            .readTimeout(40, TimeUnit.SECONDS)
-            .writeTimeout(25, TimeUnit.SECONDS)
+            .connectTimeout(1, TimeUnit.MINUTES)
+            .readTimeout(30, TimeUnit.SECONDS)
+            .writeTimeout(15, TimeUnit.SECONDS)
             .build()
         retrofit = Retrofit.Builder()
             .baseUrl("https://randomuser.me")

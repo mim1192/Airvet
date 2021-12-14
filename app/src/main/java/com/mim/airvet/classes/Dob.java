@@ -2,14 +2,15 @@
 package com.mim.airvet.classes;
 
 
-import android.os.Parcel;
 import android.os.Parcelable;
-
+import android.os.Parcelable.Creator;
+import android.os.Parcelable.Creator;
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
 
-public class Dob implements Parcelable {
+public class Dob implements Parcelable
+{
 
     @SerializedName("date")
     @Expose
@@ -17,27 +18,30 @@ public class Dob implements Parcelable {
     @SerializedName("age")
     @Expose
     private Integer age;
+    public final static Creator<Dob> CREATOR = new Creator<Dob>() {
 
-    protected Dob(Parcel in) {
-        date = in.readString();
-        if (in.readByte() == 0) {
-            age = null;
-        } else {
-            age = in.readInt();
-        }
-    }
 
-    public static final Creator<Dob> CREATOR = new Creator<Dob>() {
-        @Override
-        public Dob createFromParcel(Parcel in) {
+        @SuppressWarnings({
+            "unchecked"
+        })
+        public Dob createFromParcel(android.os.Parcel in) {
             return new Dob(in);
         }
 
-        @Override
         public Dob[] newArray(int size) {
-            return new Dob[size];
+            return (new Dob[size]);
         }
-    };
+
+    }
+    ;
+
+    protected Dob(android.os.Parcel in) {
+        this.date = ((String) in.readValue((String.class.getClassLoader())));
+        this.age = ((Integer) in.readValue((Integer.class.getClassLoader())));
+    }
+
+    public Dob() {
+    }
 
     public String getDate() {
         return date;
@@ -55,19 +59,13 @@ public class Dob implements Parcelable {
         this.age = age;
     }
 
-    @Override
-    public int describeContents() {
-        return 0;
+    public void writeToParcel(android.os.Parcel dest, int flags) {
+        dest.writeValue(date);
+        dest.writeValue(age);
     }
 
-    @Override
-    public void writeToParcel(Parcel dest, int flags) {
-        dest.writeString(date);
-        if (age == null) {
-            dest.writeByte((byte) 0);
-        } else {
-            dest.writeByte((byte) 1);
-            dest.writeInt(age);
-        }
+    public int describeContents() {
+        return  0;
     }
+
 }

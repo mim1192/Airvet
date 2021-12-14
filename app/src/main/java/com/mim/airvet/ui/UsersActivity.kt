@@ -77,12 +77,16 @@ class UsersActivity : AppCompatActivity() {
                 handleError(
                     t
                 )
+                Toast.makeText(
+                    this, t.message,
+                    Toast.LENGTH_LONG
+                ).show()
             }
     }
 
     private fun onError(throwable: Throwable) {
         Toast.makeText(
-            this, "OnError in Observable Timer",
+            this, throwable.message,
             Toast.LENGTH_LONG
         ).show()
     }

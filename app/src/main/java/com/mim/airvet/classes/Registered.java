@@ -2,14 +2,15 @@
 package com.mim.airvet.classes;
 
 
-import android.os.Parcel;
 import android.os.Parcelable;
-
+import android.os.Parcelable.Creator;
+import android.os.Parcelable.Creator;
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
 
-public class Registered implements Parcelable {
+public class Registered implements Parcelable
+{
 
     @SerializedName("date")
     @Expose
@@ -17,27 +18,30 @@ public class Registered implements Parcelable {
     @SerializedName("age")
     @Expose
     private Integer age;
+    public final static Creator<Registered> CREATOR = new Creator<Registered>() {
 
-    protected Registered(Parcel in) {
-        date = in.readString();
-        if (in.readByte() == 0) {
-            age = null;
-        } else {
-            age = in.readInt();
-        }
-    }
 
-    public static final Creator<Registered> CREATOR = new Creator<Registered>() {
-        @Override
-        public Registered createFromParcel(Parcel in) {
+        @SuppressWarnings({
+            "unchecked"
+        })
+        public Registered createFromParcel(android.os.Parcel in) {
             return new Registered(in);
         }
 
-        @Override
         public Registered[] newArray(int size) {
-            return new Registered[size];
+            return (new Registered[size]);
         }
-    };
+
+    }
+    ;
+
+    protected Registered(android.os.Parcel in) {
+        this.date = ((String) in.readValue((String.class.getClassLoader())));
+        this.age = ((Integer) in.readValue((Integer.class.getClassLoader())));
+    }
+
+    public Registered() {
+    }
 
     public String getDate() {
         return date;
@@ -55,19 +59,13 @@ public class Registered implements Parcelable {
         this.age = age;
     }
 
-    @Override
-    public int describeContents() {
-        return 0;
+    public void writeToParcel(android.os.Parcel dest, int flags) {
+        dest.writeValue(date);
+        dest.writeValue(age);
     }
 
-    @Override
-    public void writeToParcel(Parcel dest, int flags) {
-        dest.writeString(date);
-        if (age == null) {
-            dest.writeByte((byte) 0);
-        } else {
-            dest.writeByte((byte) 1);
-            dest.writeInt(age);
-        }
+    public int describeContents() {
+        return  0;
     }
+
 }

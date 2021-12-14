@@ -2,14 +2,15 @@
 package com.mim.airvet.classes;
 
 
-import android.os.Parcel;
 import android.os.Parcelable;
-
+import android.os.Parcelable.Creator;
+import android.os.Parcelable.Creator;
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
 
-public class Location implements Parcelable {
+public class Location implements Parcelable
+{
 
     @SerializedName("street")
     @Expose
@@ -32,32 +33,35 @@ public class Location implements Parcelable {
     @SerializedName("timezone")
     @Expose
     private Timezone timezone;
+    public final static Creator<Location> CREATOR = new Creator<Location>() {
 
-    protected Location(Parcel in) {
-        street = in.readParcelable(Street.class.getClassLoader());
-        city = in.readString();
-        state = in.readString();
-        country = in.readString();
-        if (in.readByte() == 0) {
-            postcode = null;
-        } else {
-            postcode = in.readInt();
-        }
-        coordinates = in.readParcelable(Coordinates.class.getClassLoader());
-        timezone = in.readParcelable(Timezone.class.getClassLoader());
-    }
 
-    public static final Creator<Location> CREATOR = new Creator<Location>() {
-        @Override
-        public Location createFromParcel(Parcel in) {
+        @SuppressWarnings({
+            "unchecked"
+        })
+        public Location createFromParcel(android.os.Parcel in) {
             return new Location(in);
         }
 
-        @Override
         public Location[] newArray(int size) {
-            return new Location[size];
+            return (new Location[size]);
         }
-    };
+
+    }
+    ;
+
+    protected Location(android.os.Parcel in) {
+        this.street = ((Street) in.readValue((Street.class.getClassLoader())));
+        this.city = ((String) in.readValue((String.class.getClassLoader())));
+        this.state = ((String) in.readValue((String.class.getClassLoader())));
+        this.country = ((String) in.readValue((String.class.getClassLoader())));
+        this.postcode = ((Integer) in.readValue((Integer.class.getClassLoader())));
+        this.coordinates = ((Coordinates) in.readValue((Coordinates.class.getClassLoader())));
+        this.timezone = ((Timezone) in.readValue((Timezone.class.getClassLoader())));
+    }
+
+    public Location() {
+    }
 
     public Street getStreet() {
         return street;
@@ -115,24 +119,18 @@ public class Location implements Parcelable {
         this.timezone = timezone;
     }
 
-    @Override
-    public int describeContents() {
-        return 0;
+    public void writeToParcel(android.os.Parcel dest, int flags) {
+        dest.writeValue(street);
+        dest.writeValue(city);
+        dest.writeValue(state);
+        dest.writeValue(country);
+        dest.writeValue(postcode);
+        dest.writeValue(coordinates);
+        dest.writeValue(timezone);
     }
 
-    @Override
-    public void writeToParcel(Parcel dest, int flags) {
-        dest.writeParcelable(street, flags);
-        dest.writeString(city);
-        dest.writeString(state);
-        dest.writeString(country);
-        if (postcode == null) {
-            dest.writeByte((byte) 0);
-        } else {
-            dest.writeByte((byte) 1);
-            dest.writeInt(postcode);
-        }
-        dest.writeParcelable(coordinates, flags);
-        dest.writeParcelable(timezone, flags);
+    public int describeContents() {
+        return  0;
     }
+
 }

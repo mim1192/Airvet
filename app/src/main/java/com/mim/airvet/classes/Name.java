@@ -2,14 +2,15 @@
 package com.mim.airvet.classes;
 
 
-import android.os.Parcel;
 import android.os.Parcelable;
-
+import android.os.Parcelable.Creator;
+import android.os.Parcelable.Creator;
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
 
-public class Name implements Parcelable {
+public class Name implements Parcelable
+{
 
     @SerializedName("title")
     @Expose
@@ -20,24 +21,31 @@ public class Name implements Parcelable {
     @SerializedName("last")
     @Expose
     private String last;
+    public final static Creator<Name> CREATOR = new Creator<Name>() {
 
-    protected Name(Parcel in) {
-        title = in.readString();
-        first = in.readString();
-        last = in.readString();
-    }
 
-    public static final Creator<Name> CREATOR = new Creator<Name>() {
-        @Override
-        public Name createFromParcel(Parcel in) {
+        @SuppressWarnings({
+            "unchecked"
+        })
+        public Name createFromParcel(android.os.Parcel in) {
             return new Name(in);
         }
 
-        @Override
         public Name[] newArray(int size) {
-            return new Name[size];
+            return (new Name[size]);
         }
-    };
+
+    }
+    ;
+
+    protected Name(android.os.Parcel in) {
+        this.title = ((String) in.readValue((String.class.getClassLoader())));
+        this.first = ((String) in.readValue((String.class.getClassLoader())));
+        this.last = ((String) in.readValue((String.class.getClassLoader())));
+    }
+
+    public Name() {
+    }
 
     public String getTitle() {
         return title;
@@ -63,15 +71,14 @@ public class Name implements Parcelable {
         this.last = last;
     }
 
-    @Override
-    public int describeContents() {
-        return 0;
+    public void writeToParcel(android.os.Parcel dest, int flags) {
+        dest.writeValue(title);
+        dest.writeValue(first);
+        dest.writeValue(last);
     }
 
-    @Override
-    public void writeToParcel(Parcel dest, int flags) {
-        dest.writeString(title);
-        dest.writeString(first);
-        dest.writeString(last);
+    public int describeContents() {
+        return  0;
     }
+
 }

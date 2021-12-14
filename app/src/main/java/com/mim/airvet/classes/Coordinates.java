@@ -2,14 +2,15 @@
 package com.mim.airvet.classes;
 
 
-import android.os.Parcel;
 import android.os.Parcelable;
-
+import android.os.Parcelable.Creator;
+import android.os.Parcelable.Creator;
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
 
-public class Coordinates implements Parcelable {
+public class Coordinates implements Parcelable
+{
 
     @SerializedName("latitude")
     @Expose
@@ -17,34 +18,30 @@ public class Coordinates implements Parcelable {
     @SerializedName("longitude")
     @Expose
     private String longitude;
+    public final static Creator<Coordinates> CREATOR = new Creator<Coordinates>() {
 
-    protected Coordinates(Parcel in) {
-        latitude = in.readString();
-        longitude = in.readString();
-    }
 
-    @Override
-    public void writeToParcel(Parcel dest, int flags) {
-        dest.writeString(latitude);
-        dest.writeString(longitude);
-    }
-
-    @Override
-    public int describeContents() {
-        return 0;
-    }
-
-    public static final Creator<Coordinates> CREATOR = new Creator<Coordinates>() {
-        @Override
-        public Coordinates createFromParcel(Parcel in) {
+        @SuppressWarnings({
+            "unchecked"
+        })
+        public Coordinates createFromParcel(android.os.Parcel in) {
             return new Coordinates(in);
         }
 
-        @Override
         public Coordinates[] newArray(int size) {
-            return new Coordinates[size];
+            return (new Coordinates[size]);
         }
-    };
+
+    }
+    ;
+
+    protected Coordinates(android.os.Parcel in) {
+        this.latitude = ((String) in.readValue((String.class.getClassLoader())));
+        this.longitude = ((String) in.readValue((String.class.getClassLoader())));
+    }
+
+    public Coordinates() {
+    }
 
     public String getLatitude() {
         return latitude;
@@ -60,6 +57,15 @@ public class Coordinates implements Parcelable {
 
     public void setLongitude(String longitude) {
         this.longitude = longitude;
+    }
+
+    public void writeToParcel(android.os.Parcel dest, int flags) {
+        dest.writeValue(latitude);
+        dest.writeValue(longitude);
+    }
+
+    public int describeContents() {
+        return  0;
     }
 
 }

@@ -2,14 +2,15 @@
 package com.mim.airvet.classes;
 
 
-import android.os.Parcel;
 import android.os.Parcelable;
-
+import android.os.Parcelable.Creator;
+import android.os.Parcelable.Creator;
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
 
-public class Picture implements Parcelable {
+public class Picture implements Parcelable
+{
 
     @SerializedName("large")
     @Expose
@@ -20,24 +21,31 @@ public class Picture implements Parcelable {
     @SerializedName("thumbnail")
     @Expose
     private String thumbnail;
+    public final static Creator<Picture> CREATOR = new Creator<Picture>() {
 
-    protected Picture(Parcel in) {
-        large = in.readString();
-        medium = in.readString();
-        thumbnail = in.readString();
-    }
 
-    public static final Creator<Picture> CREATOR = new Creator<Picture>() {
-        @Override
-        public Picture createFromParcel(Parcel in) {
+        @SuppressWarnings({
+            "unchecked"
+        })
+        public Picture createFromParcel(android.os.Parcel in) {
             return new Picture(in);
         }
 
-        @Override
         public Picture[] newArray(int size) {
-            return new Picture[size];
+            return (new Picture[size]);
         }
-    };
+
+    }
+    ;
+
+    protected Picture(android.os.Parcel in) {
+        this.large = ((String) in.readValue((String.class.getClassLoader())));
+        this.medium = ((String) in.readValue((String.class.getClassLoader())));
+        this.thumbnail = ((String) in.readValue((String.class.getClassLoader())));
+    }
+
+    public Picture() {
+    }
 
     public String getLarge() {
         return large;
@@ -63,15 +71,14 @@ public class Picture implements Parcelable {
         this.thumbnail = thumbnail;
     }
 
-    @Override
-    public int describeContents() {
-        return 0;
+    public void writeToParcel(android.os.Parcel dest, int flags) {
+        dest.writeValue(large);
+        dest.writeValue(medium);
+        dest.writeValue(thumbnail);
     }
 
-    @Override
-    public void writeToParcel(Parcel dest, int flags) {
-        dest.writeString(large);
-        dest.writeString(medium);
-        dest.writeString(thumbnail);
+    public int describeContents() {
+        return  0;
     }
+
 }

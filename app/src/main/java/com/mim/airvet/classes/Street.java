@@ -2,14 +2,15 @@
 package com.mim.airvet.classes;
 
 
-import android.os.Parcel;
 import android.os.Parcelable;
-
+import android.os.Parcelable.Creator;
+import android.os.Parcelable.Creator;
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
 
-public class Street implements Parcelable {
+public class Street implements Parcelable
+{
 
     @SerializedName("number")
     @Expose
@@ -17,27 +18,30 @@ public class Street implements Parcelable {
     @SerializedName("name")
     @Expose
     private String name;
+    public final static Creator<Street> CREATOR = new Creator<Street>() {
 
-    protected Street(Parcel in) {
-        if (in.readByte() == 0) {
-            number = null;
-        } else {
-            number = in.readInt();
-        }
-        name = in.readString();
-    }
 
-    public static final Creator<Street> CREATOR = new Creator<Street>() {
-        @Override
-        public Street createFromParcel(Parcel in) {
+        @SuppressWarnings({
+            "unchecked"
+        })
+        public Street createFromParcel(android.os.Parcel in) {
             return new Street(in);
         }
 
-        @Override
         public Street[] newArray(int size) {
-            return new Street[size];
+            return (new Street[size]);
         }
-    };
+
+    }
+    ;
+
+    protected Street(android.os.Parcel in) {
+        this.number = ((Integer) in.readValue((Integer.class.getClassLoader())));
+        this.name = ((String) in.readValue((String.class.getClassLoader())));
+    }
+
+    public Street() {
+    }
 
     public Integer getNumber() {
         return number;
@@ -55,19 +59,13 @@ public class Street implements Parcelable {
         this.name = name;
     }
 
-    @Override
-    public int describeContents() {
-        return 0;
+    public void writeToParcel(android.os.Parcel dest, int flags) {
+        dest.writeValue(number);
+        dest.writeValue(name);
     }
 
-    @Override
-    public void writeToParcel(Parcel dest, int flags) {
-        if (number == null) {
-            dest.writeByte((byte) 0);
-        } else {
-            dest.writeByte((byte) 1);
-            dest.writeInt(number);
-        }
-        dest.writeString(name);
+    public int describeContents() {
+        return  0;
     }
+
 }

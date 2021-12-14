@@ -2,14 +2,15 @@
 package com.mim.airvet.classes;
 
 
-import android.os.Parcel;
 import android.os.Parcelable;
-
+import android.os.Parcelable.Creator;
+import android.os.Parcelable.Creator;
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
 
-public class Result implements Parcelable {
+public class Result implements Parcelable
+{
 
     @SerializedName("gender")
     @Expose
@@ -47,33 +48,40 @@ public class Result implements Parcelable {
     @SerializedName("nat")
     @Expose
     private String nat;
+    public final static Creator<Result> CREATOR = new Creator<Result>() {
 
-    protected Result(Parcel in) {
-        gender = in.readString();
-        name = in.readParcelable(Name.class.getClassLoader());
-        location = in.readParcelable(Location.class.getClassLoader());
-        email = in.readString();
-        login = in.readParcelable(Login.class.getClassLoader());
-        dob = in.readParcelable(Dob.class.getClassLoader());
-        registered = in.readParcelable(Registered.class.getClassLoader());
-        phone = in.readString();
-        cell = in.readString();
-        id = in.readParcelable(Id.class.getClassLoader());
-        picture = in.readParcelable(Picture.class.getClassLoader());
-        nat = in.readString();
-    }
 
-    public static final Creator<Result> CREATOR = new Creator<Result>() {
-        @Override
-        public Result createFromParcel(Parcel in) {
+        @SuppressWarnings({
+            "unchecked"
+        })
+        public Result createFromParcel(android.os.Parcel in) {
             return new Result(in);
         }
 
-        @Override
         public Result[] newArray(int size) {
-            return new Result[size];
+            return (new Result[size]);
         }
-    };
+
+    }
+    ;
+
+    protected Result(android.os.Parcel in) {
+        this.gender = ((String) in.readValue((String.class.getClassLoader())));
+        this.name = ((Name) in.readValue((Name.class.getClassLoader())));
+        this.location = ((Location) in.readValue((Location.class.getClassLoader())));
+        this.email = ((String) in.readValue((String.class.getClassLoader())));
+        this.login = ((Login) in.readValue((Login.class.getClassLoader())));
+        this.dob = ((Dob) in.readValue((Dob.class.getClassLoader())));
+        this.registered = ((Registered) in.readValue((Registered.class.getClassLoader())));
+        this.phone = ((String) in.readValue((String.class.getClassLoader())));
+        this.cell = ((String) in.readValue((String.class.getClassLoader())));
+        this.id = ((Id) in.readValue((Id.class.getClassLoader())));
+        this.picture = ((Picture) in.readValue((Picture.class.getClassLoader())));
+        this.nat = ((String) in.readValue((String.class.getClassLoader())));
+    }
+
+    public Result() {
+    }
 
     public String getGender() {
         return gender;
@@ -171,24 +179,23 @@ public class Result implements Parcelable {
         this.nat = nat;
     }
 
-    @Override
-    public int describeContents() {
-        return 0;
+    public void writeToParcel(android.os.Parcel dest, int flags) {
+        dest.writeValue(gender);
+        dest.writeValue(name);
+        dest.writeValue(location);
+        dest.writeValue(email);
+        dest.writeValue(login);
+        dest.writeValue(dob);
+        dest.writeValue(registered);
+        dest.writeValue(phone);
+        dest.writeValue(cell);
+        dest.writeValue(id);
+        dest.writeValue(picture);
+        dest.writeValue(nat);
     }
 
-    @Override
-    public void writeToParcel(Parcel dest, int flags) {
-        dest.writeString(gender);
-        dest.writeParcelable(name, flags);
-        dest.writeParcelable(location, flags);
-        dest.writeString(email);
-        dest.writeParcelable(login, flags);
-        dest.writeParcelable(dob, flags);
-        dest.writeParcelable(registered, flags);
-        dest.writeString(phone);
-        dest.writeString(cell);
-        dest.writeParcelable(id, flags);
-        dest.writeParcelable(picture, flags);
-        dest.writeString(nat);
+    public int describeContents() {
+        return  0;
     }
+
 }

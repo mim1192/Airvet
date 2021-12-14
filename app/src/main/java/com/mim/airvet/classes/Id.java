@@ -2,14 +2,15 @@
 package com.mim.airvet.classes;
 
 
-import android.os.Parcel;
 import android.os.Parcelable;
-
+import android.os.Parcelable.Creator;
+import android.os.Parcelable.Creator;
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
 
-public class Id implements Parcelable {
+public class Id implements Parcelable
+{
 
     @SerializedName("name")
     @Expose
@@ -17,23 +18,30 @@ public class Id implements Parcelable {
     @SerializedName("value")
     @Expose
     private String value;
+    public final static Creator<Id> CREATOR = new Creator<Id>() {
 
-    protected Id(Parcel in) {
-        name = in.readString();
-        value = in.readString();
-    }
 
-    public static final Creator<Id> CREATOR = new Creator<Id>() {
-        @Override
-        public Id createFromParcel(Parcel in) {
+        @SuppressWarnings({
+            "unchecked"
+        })
+        public Id createFromParcel(android.os.Parcel in) {
             return new Id(in);
         }
 
-        @Override
         public Id[] newArray(int size) {
-            return new Id[size];
+            return (new Id[size]);
         }
-    };
+
+    }
+    ;
+
+    protected Id(android.os.Parcel in) {
+        this.name = ((String) in.readValue((String.class.getClassLoader())));
+        this.value = ((String) in.readValue((String.class.getClassLoader())));
+    }
+
+    public Id() {
+    }
 
     public String getName() {
         return name;
@@ -51,14 +59,13 @@ public class Id implements Parcelable {
         this.value = value;
     }
 
-    @Override
-    public int describeContents() {
-        return 0;
+    public void writeToParcel(android.os.Parcel dest, int flags) {
+        dest.writeValue(name);
+        dest.writeValue(value);
     }
 
-    @Override
-    public void writeToParcel(Parcel dest, int flags) {
-        dest.writeString(name);
-        dest.writeString(value);
+    public int describeContents() {
+        return  0;
     }
+
 }
